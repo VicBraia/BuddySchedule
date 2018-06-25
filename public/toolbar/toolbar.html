@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <nav class="row navbar navbar-expand-sm navbar-light bg-light w-auto">
+    <div class="col-1">
+      <button class="btn mr-3 sidemenu" type="button" data-toggle = "collapse" data-target="#navbarToggleExternalContent" aria-expanded="false" aria-controls=".collapse #navbarToggleExternalContent">
+        <i class = "mdi mdi-menu-right" style="cursor:pointer"></i>
+      </button>
+    </div>
+
+    <div class="col-7 navbar-brand app-name">Buddy Schedule</div>
+
+    <div class="user col-3">
+      <div class="row justify-content-end">
+        <i class = "mdi mdi-account pr-3"></i>
+        <span class="text-black pr-2">User Name</span>
+        <span class="dropdown show pull-right">
+          <a class="dropdown-toggle" role="button" id="dropdownMenuLink" style="cursor:pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          </a>
+          <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" style="cursor:pointer">Sair</a>
+          </div>
+        </span>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="wrapper h-100">
+  <div class="collapse col-2 pr-0 pl-0" id="navbarToggleExternalContent">
+    <div class="container-fluid bg-dark h-100 pl-4 col-12">
+      <span class="text-muted row pt-4">Meu calendário</span>
+      <span class="text-muted row">Calendários Compartilhados</span>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <ui-view name = "content"></ui-view>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div ng-include src="'calendar/create.html'"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-6 title pt-2 pb-2">
+      <h2>My Schedule</h2>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-9" id="renderCalendar('myCalendar1');">
+      <div class="calendar" ng-model="eventSources" calendar="myCalendar1" ui-calendar="uiConfig.calendar">
+      </div>
+    </div>
+  </div>
+</div>

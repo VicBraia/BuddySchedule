@@ -1,0 +1,16 @@
+.wrapper {
+        display: flex;
+}
+
+#sidebar {
+        min-width: 250px;
+        max-width: 300px;
+        height: 100vh;
+}
+
+.dropdown-menu{
+  offset: 0px 90px;
+  position: absolute;
+  right: 0px !important;
+  left: auto !important;
+}

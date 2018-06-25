@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="buddy-schedule">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Schedule Buddy</title>
+
+    <link rel="stylesheet" href="app/css/toolbar.css">
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css">
+
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css">
+	  <link rel="stylesheet" href="css/calendar.css"> -->
+
+    <!-- declare .css files and other stylesheet references, like below: -->
+    <!-- <link rel="stylesheet" href="#"/> -->
+
+  </head>
+
+  <body>
+    <ui-view></ui-view>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <!-- if you want to use bootstrap: -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- AngularJs -->
+    <script src="bower_components/moment/min/moment.min.js"></script>
+    <script src="bower_components/angular/angular.min.js" charset="utf-8"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js" charset="utf-8"></script>
+    <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+    <script src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+    <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css"/>
+    <!-- ui-calendar -->
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+
+    <!-- AngularFire -->
+    <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+
+    <!-- All .js files in the project: -->
+    <script src="app/app.js" charset="utf-8"></script>
+    <script src="app/app.core.js" charset="utf-8"></script>
+    <script src="app/app.controller.js" charset="utf-8"></script>
+
+    <script src="app/app.config/app.config.js" charset="utf-8"></script>
+    <script src="app/app.config/calendar.config.js" charset="utf-8"></script>
+
+    <script src="factories/event.factory.js" charset="utf-8"></script>
+    <script src="factories/user.factory.js" charset="utf-8"></script>
+
+    <script src="toolbar/toolbar.controller.js" charset="utf-8"></script>
+    <script src="calendar/calendar.controller.js" charset="utf-8"></script>
+
+    <script>
+      var config = {
+        apiKey: "AIzaSyCChwijlQiliE0Hd5X0bWSgSbjOtsWYN7M",
+        authDomain: "calefriend-f86a4.firebaseapp.com",
+        databaseURL: "https://calefriend-f86a4.firebaseio.com",
+        projectId: "calefriend-f86a4",
+        storageBucket: "calefriend-f86a4.appspot.com",
+        messagingSenderId: "544122608819"
+      };
+      firebase.initializeApp(config);
+    </script>
+  </body>
+</html>
