@@ -12,8 +12,8 @@
           url: '/calendar',
           views:{
            'content':{
-             templateUrl: 'calendar/calendar.html',
-             controller: 'CalendarCtrl',
+             templateUrl: 'calendarFromScratch/calendar.html',
+             controller: 'CalendarFromScratchCtrl',
              controllerAs: 'vm'
            }
          },
@@ -23,6 +23,22 @@
           }
         }
       }
+      var calendar2State = {
+        name: 'app.calendar2',
+        url: '/calendar2',
+        views:{
+         'content':{
+           templateUrl: 'calendar/calendar.html',
+           controller: 'CalendarCtrl',
+           controllerAs: 'vm'
+         }
+       },
+    resolve: {
+      resolvedEvents: function(EventFactory){
+        return EventFactory.getAll();
+        }
+      }
+    }
     var createState = {
           name: 'create',
           url: '/create',
@@ -41,6 +57,7 @@
 
 
     $stateProvider.state(calendarState);
+    $stateProvider.state(calendar2State);
     $stateProvider.state(createState);
     $stateProvider.state(eventDetailState);
 

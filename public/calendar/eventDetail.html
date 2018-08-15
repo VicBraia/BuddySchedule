@@ -8,8 +8,32 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="row justify-content-center">
-          oi
+        <div class="form-group">
+          <div class="row justify-content-center">
+            <div class="col-9">
+              <div class="row">
+                <label class="form-label col-2">Nome:</label>
+                <div class="col-10">{{vm.eventToBeShown.title}}</div>
+              </div>
+              <div class="row">
+                <label class="col-2 form-label">Data:</label>
+                <div class="col-10">{{vm.eventToBeShown.date}}</div>
+              </div>
+              <div class="row">
+                <label class="col-form-label profile" id="timeLabel2">Horário:</label>
+                <div class="row justify-content-center" id="time2">
+                  <span class="col-2">From</span>
+                  <div class="col-3 ml-2" id="timeBegin2">{{vm.eventToBeShown.startTime}}</div>
+                  <span class="col-1">to</span>
+                  <div class="col-3 ml-2" id="timeEnd2">{{vm.eventToBeShown.endTime}}</div>
+                </div>
+              </div>
+              <div class=" row form-check justify-content-center pt-2">
+                <input type="checkbox" class="form-check-input col-2 pr-4" id="checkAllDay2">
+                <label class="form-check-label col-10 pl-4" for="exampleCheck1">Evento durante todo o dia</label>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="modal-footer">

@@ -38,9 +38,8 @@
              center: 'title',
              right: 'today prev,next'
            },
-           eventClick: function(){
-             alert("oi");
-             $("#eventDetails").modal();
+           eventClick: function(date, jsEvent, view){
+             showEvent(date);
            },
            eventDrop: $scope.alertOnDrop,
            eventResize: $scope.alertOnResize,
@@ -74,6 +73,28 @@
                         'tooltip-append-to-body': true});
            $compile(element)($scope);
        };
+
+       function showEvent(date) {
+         console.log(date);
+         vm.eventToBeShown = {};
+         vm.eventToBeShown.title = date.title;
+         vm.eventToBeShown.date = date.start.format('DD/MM/YYYY');
+         vm.eventToBeShown.startTime = date.start.utc().format('HH:mm');
+         if(vm.eventToBeShown.startTime == "00:00"){
+           vm.event.allDay = true;
+           document.getElementById("checkAllDay2").checked= true;
+           document.getElementById("time2").style.display= "none";
+           document.getElementById("timeLabel2").style.display= "none";
+         }
+         else {
+           vm.eventToBeShown.endTime = date.end.utc().format('HH:mm');
+           vm.eventToBeAdded.allDay = false;
+           document.getElementById("timeBegin2").disabled= false;
+           document.getElementById("timeEnd2").disabled= false;
+         }
+         $("#eventDetails").modal();
+
+       }
 
        function addEvent (date){
          vm.event.startTime = date.utc().format('HH:mm');
