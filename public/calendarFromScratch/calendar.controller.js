@@ -53,29 +53,29 @@
         function updateMonth(){
             vm.month = [];
             var date;
-            var day = new Date (vm.currentYear, vm.shownMonth + 1, 1);
+            var day = new Date (vm.currentYear, vm.shownMonth, 1);
             var weekDay = day.getDay();
 
             while(weekDay != 0){ //get dates from previous month that appear in the first week of the current month
-                date = new Date (vm.currentYear, vm.shownMonth + 1, -weekDay);
+                date = new Date (vm.currentYear, vm.shownMonth, -weekDay+1);
                 date = date.getDate();
                 vm.month.push(date);
                 weekDay--;
             }
 
-            while(day.getMonth() == vm.shownMonth + 1){ //get current month's dates
+            while(day.getMonth() == vm.shownMonth){ //get current month's dates
                 date =  day.getDate();
                 day.setDate(day.getDate() + 1);
                 vm.month.push(date);
             }
 
-            while(day.getDay() != 6){ //get dates from future month that appear in the last week of the current month
+            for(var i = day.getDay(); i<=6; i++){
                 date =  day.getDate();
                 day.setDate(day.getDate() + 1);
                 vm.month.push(date);
             }
 
-            console.log(vm.shownMonth + 1);
+            console.log(vm.shownMonth);
             console.log(vm.month);
         }
 
