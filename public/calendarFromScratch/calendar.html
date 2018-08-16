@@ -11,12 +11,24 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col" ng-repeat="x in vm.weekDayList">{{x}}</th>
+                            <th scope="col" ng-repeat="x in vm.weekDayList">
+                                <div class = "row justify-content-center">
+                                    <div class = "col-12" align = "center">
+                                        {{x}}
+                                    </div>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td ng-repeat="day in vm.month">{{day}}</td>
+                        <tr class = "week" ng-repeat = "(key, week) in vm.monthWeeks">
+                            <td style = "width: 14%" ng-repeat = "day in week track by $index">
+                                <div class = "row justify-content-end">
+                                    <div class = "col-5" align = "center">
+                                        {{day}}
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

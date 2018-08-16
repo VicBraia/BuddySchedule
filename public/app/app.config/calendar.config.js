@@ -23,6 +23,24 @@
           }
         }
       }
+
+      var weekViewState = {
+        name: 'app.weekView',
+        url: '/calendar/weekView',
+        views:{
+         'content':{
+           templateUrl: 'calendarFromScratch/weekView.html',
+           controller: 'WeekViewCtrl',
+           controllerAs: 'vm'
+         }
+       },
+    resolve: {
+      resolvedEvents: function(EventFactory){
+        return EventFactory.getAll();
+        }
+      }
+    }
+      
       var calendar2State = {
         name: 'app.calendar2',
         url: '/calendar2',
@@ -57,6 +75,7 @@
 
 
     $stateProvider.state(calendarState);
+    $stateProvider.state(weekViewState);
     $stateProvider.state(calendar2State);
     $stateProvider.state(createState);
     $stateProvider.state(eventDetailState);

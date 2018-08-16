@@ -4,6 +4,11 @@
         <h2>Meu Calendário</h2>
       </div>
     </div>
-    <div class="row justify-content-center">
-      <ui-view name = calendar></ui-view> 
+    <select ng-model="calendarView">
+        <button value="month">Month</button>
+        <button value="week">Week</button>
+        <button value="day">Day</button>
+    </select>
+    <div ng-class="calendarView"></div>
+</div>
         

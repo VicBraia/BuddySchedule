@@ -18,11 +18,6 @@
         vm.currentYear = vm.today.format('YYYY');
         vm.currentTime = vm.today.format('HH:mm');
 
-        // vm.monthList = new Array;
-        // vm.weekDayList = new Array;
-        // vm.abbrevMonthList = new Array;
-        // vm.abbrevMeekDayList = new Array;
-
         vm.shownDay = {};
         vm.shownMonth = {};
         vm.shownYear = {};
@@ -41,42 +36,50 @@
         vm.shownDay = vm.currentDay;
         vm.shownYear = vm.currentYear;
         vm.shownWeekDay = vm.weekDayList[vm.currentWeekDay];  
-        vm.shownMonth = vm.currentMonth - 1;     
+        vm.shownMonth = vm.currentMonth - 1; 
+        vm.monthWeeks = [];    
         
         vm.changeMonth = changeMonth;
 
         activate();
         
         function activate() {
+            vm.monthWeeks = initializeMonth(vm.shownMonth);
         }
 
-        function updateMonth(){
-            vm.month = [];
+        function initializeMonth(month){
+            var daysToBeShown = [];
             var date;
-            var day = new Date (vm.currentYear, vm.shownMonth, 1);
+            var day = new Date (vm.currentYear, month, 1);
             var weekDay = day.getDay();
 
             while(weekDay != 0){ //get dates from previous month that appear in the first week of the current month
-                date = new Date (vm.currentYear, vm.shownMonth, -weekDay+1);
+                date = new Date (vm.currentYear, month, -weekDay+1);
                 date = date.getDate();
-                vm.month.push(date);
+                daysToBeShown.push(date);
                 weekDay--;
             }
 
-            while(day.getMonth() == vm.shownMonth){ //get current month's dates
+            while(day.getMonth() == month){ //get current month's dates
                 date =  day.getDate();
                 day.setDate(day.getDate() + 1);
-                vm.month.push(date);
+                daysToBeShown.push(date);
             }
 
             for(var i = day.getDay(); i<=6; i++){
                 date =  day.getDate();
                 day.setDate(day.getDate() + 1);
-                vm.month.push(date);
+                daysToBeShown.push(date);
             }
 
-            console.log(vm.shownMonth);
-            console.log(vm.month);
+            var weekQuant = daysToBeShown.length%7;
+
+            var calendarWeeks = [];
+            for(var i = 0; i < daysToBeShown.length; i+= 7){
+                var tmp = daysToBeShown.slice(i, i+7);
+                calendarWeeks.push(tmp);
+            }
+            return calendarWeeks;
         }
 
         function changeMonth(value){
@@ -87,6 +90,7 @@
                         vm.shownYear--;
                         vm.shownMonth = 11;
                     }
+                    vm.monthWeeks = initializeMonth(vm.shownMonth); 
                 break;
                 case(1):
                     vm.shownMonth++;
@@ -94,9 +98,9 @@
                         vm.shownYear++;
                         vm.shownMonth = 0;
                     }
+                    vm.monthWeeks = initializeMonth(vm.shownMonth); 
                 break;
             }
-            updateMonth();  
         }
 
         function changeView(option){
