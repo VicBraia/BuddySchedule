@@ -7,16 +7,18 @@
   .run(run);
 
   function config($urlRouterProvider, $stateProvider){
+    
+    
     var calendarState = {
-          name: 'app.calendar',
-          url: '/calendar',
-          views:{
-           'content':{
-             templateUrl: 'calendarFromScratch/calendar.html',
-             controller: 'CalendarFromScratchCtrl',
-             controllerAs: 'vm'
-           }
-         },
+      name: 'app.calendar',
+      url: '/calendar',
+      views:{
+       'content':{
+          templateUrl: 'calendar/monthView.html',
+          controller: 'MonthViewCtrl',
+           controllerAs: 'vm'
+        }
+      },
       resolve: {
         resolvedEvents: function(EventFactory){
           return EventFactory.getAll();
@@ -29,17 +31,34 @@
         url: '/calendar/weekView',
         views:{
          'content':{
-           templateUrl: 'calendarFromScratch/weekView.html',
+           templateUrl: 'calendar/weekView.html',
            controller: 'WeekViewCtrl',
            controllerAs: 'vm'
          }
        },
-    resolve: {
-      resolvedEvents: function(EventFactory){
-        return EventFactory.getAll();
+      resolve: {
+        resolvedEvents: function(EventFactory){
+          return EventFactory.getAll();
+          }
         }
       }
-    }
+
+      var dayViewState = {
+        name: 'app.dayView',
+        url: '/calendar/dayView',
+        views:{
+         'content':{
+           templateUrl: 'calendar/dayView.html',
+           controller: 'DayViewCtrl',
+           controllerAs: 'vm'
+         }
+       },
+      resolve: {
+        resolvedEvents: function(EventFactory){
+          return EventFactory.getAll();
+          }
+        }
+      }  
       
       var calendar2State = {
         name: 'app.calendar2',
@@ -73,12 +92,14 @@
           controllerAs: 'vm'
       }
 
-
     $stateProvider.state(calendarState);
     $stateProvider.state(weekViewState);
+    $stateProvider.state(dayViewState);
     $stateProvider.state(calendar2State);
     $stateProvider.state(createState);
     $stateProvider.state(eventDetailState);
+    
+    $urlRouterProvider.otherwise('/app/home');
 
   }
 

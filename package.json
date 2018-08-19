@@ -16,5 +16,8 @@
     "live-server": "^1.2.0",
     "reduce": "^1.0.1",
     "underscore": "^1.9.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
   }
 }

@@ -15,27 +15,27 @@
           controller: 'ToolbarCtrl',
           controllerAs: 'vm'
     }
-    // var createState = {
-    //       name: 'create',
-    //       url: '/create',
-    //       templateUrl: 'entity/create.html',
-    //       controller: 'TemplateCtrl',
-    //       controllerAs: 'vm'
-    //   }
-    //
-    // var updateState = {
-    //       name: 'update',
-    //       url: '/update',
-    //       templateUrl: 'entity/update.html',
-    //       controller: 'TemplateCtrl',
-    //       controllerAs: 'vm'
-    //   }
-
-
+    var homeState = {
+      name: 'app.home',
+      url: '/home',
+      views:{
+       'content':{
+          templateUrl: 'home/home.html',
+          controller: 'HomeCtrl',
+          controllerAs: 'vm' 
+        }
+      },
+      resolve: {
+        resolvedEvents: function(EventFactory){
+          return EventFactory.getAll();
+          }
+        }
+      }
+  
     $stateProvider.state(appState);
-    // $stateProvider.state(createState);
-    // $stateProvider.state(updateState);
-
+    $stateProvider.state(homeState);
+   
+    
     $urlRouterProvider.otherwise('/app/calendar');
   }
 

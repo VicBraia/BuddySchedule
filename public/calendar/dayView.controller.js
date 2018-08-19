@@ -3,13 +3,13 @@
 
     angular
         .module('buddy-schedule')
-        .controller('WeekViewCtrl', WeekViewCtrl);
+        .controller('DayViewCtrl', DayViewCtrl);
 
 
-        WeekViewCtrl.$inject = ['$scope', '$state', 'EventFactory', 'resolvedEvents'];
+        DayViewCtrl.$inject = ['$scope', '$state', 'EventFactory'];
 
     /* @ngInject */
-    function WeekViewCtrl($scope, $state, EventFactory, resolvedEvents) {
+    function DayViewCtrl($scope, $state, EventFactory) {
         var vm = this;
         vm.today = moment(new Date());
         vm.currentMonth = vm.today.format('MM'); // get from monthList
@@ -31,20 +31,41 @@
         vm.abbrevMonthList = ['Jan', 'Fev', 'Mar', 'Abri', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
         vm.abbrevWeekDayList = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 
-        vm.shownDay = vm.currentDay;
-        vm.shownYear = vm.currentYear;
-        vm.shownWeekDay = vm.weekDayList[vm.currentWeekDay];  
-        vm.shownMonth = vm.currentMonth - 1; 
-        vm.monthWeeks = [];    
-
-        vm.changeWeek = changeWeek;
+        vm.changeDay = changeDay;
 
         activate();
         
         function activate() {
-            vm.week = getWeek(vm.today);
+            vm.date = getDate(0);
+            initializeCharacteristics(vm.date);            
             vm.hours = initializeHours();
-            //console.log(vm.week);
+        }
+
+        function initializeCharacteristics(date){
+            vm.shownMonth = vm.monthList[date.format('MM') - 1]; // get from monthList
+            vm.shownDay = date.format('DD');
+            vm.shownWeekDay = vm.weekDayList[date.format('d')]; // get from weekDayList
+            vm.shownYear = date.format('YYYY');
+            vm.shownTime = date.format('HH:mm');
+        }
+
+        function getDate(value){
+            switch(value){
+                case (0):
+                    return moment(new Date());
+                break;
+                case(1):
+                    return vm.date.add(value, 'day');
+                break;
+                case(-1):
+                    return vm.date.add(value, 'day');
+                break;
+            }
+        }
+
+        function changeDay(value){
+            vm.date = getDate(value);
+            initializeCharacteristics(vm.date);            
         }
 
         function initializeHours(){
@@ -55,21 +76,6 @@
                 hours.push(vm.today.startOf('day').add(i, 'hours').format('HH:mm'));
             }
             return hours;
-        }
-
-        function getWeek(date){
-            var week = [];
-            week.push(date.startOf('week').format('DD'));
-
-            for(var i = 1; i <= 6; i++){
-                week.push(date.startOf('week').add(i, 'days').format('DD'));
-            }
-
-            return week;
-        }
-
-        function changeWeek(value){
-            return vm.week = getWeek(vm.today.add(value*7, 'days'));
         }
     }
 })();

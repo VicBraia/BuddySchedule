@@ -3,13 +3,13 @@
 
     angular
         .module('buddy-schedule')
-        .controller('CalendarFromScratchCtrl', CalendarFromScratchCtrl);
+        .controller('MonthViewCtrl', MonthViewCtrl);
 
 
-        CalendarFromScratchCtrl.$inject = ['$scope', '$state', 'EventFactory', 'resolvedEvents'];
+        MonthViewCtrl.$inject = ['$scope', '$state', 'EventFactory'];
 
     /* @ngInject */
-    function CalendarFromScratchCtrl($scope, $state, EventFactory, resolvedEvents) {
+    function MonthViewCtrl($scope, $state, EventFactory) {
         var vm = this;
         vm.today = moment(new Date());
         vm.currentMonth = vm.today.format('MM'); // get from monthList
@@ -30,8 +30,6 @@
         vm.weekDayList = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
         vm.abbrevMonthList = ['Jan', 'Fev', 'Mar', 'Abri', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
         vm.abbrevWeekDayList = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-
-        var offset = -1;
 
         vm.shownDay = vm.currentDay;
         vm.shownYear = vm.currentYear;
@@ -71,8 +69,6 @@
                 day.setDate(day.getDate() + 1);
                 daysToBeShown.push(date);
             }
-
-            var weekQuant = daysToBeShown.length%7;
 
             var calendarWeeks = [];
             for(var i = 0; i < daysToBeShown.length; i+= 7){
