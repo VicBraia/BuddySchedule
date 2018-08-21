@@ -38,11 +38,23 @@
         vm.monthWeeks = [];    
         
         vm.changeMonth = changeMonth;
+        vm.abbrev = abbrev;
 
         activate();
         
         function activate() {
             vm.monthWeeks = initializeMonth(vm.shownMonth);
+            vm.weekList = vm.weekDayList;
+        }
+
+        function abbrev(){
+            alert(outerwidth)
+            if(window.outerwidth<436){
+                vm.weekList = vm.abbrevWeekDayList;
+            }
+            else{
+                vm.weekList = vm.weekDayList;
+            }
         }
 
         function initializeMonth(month){
