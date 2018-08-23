@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row mt-3 title align-items-center">
-    <div class="col-6 title pt-2 pb-2">
-      <h5>Meu Calendário</h5>
+    <div class="myCalendar col-md-4 col-sm-4 col-xs-6 title pt-2 pb-2" style="text-align: center">
+      Meu Calendário
     </div>
 
     <!-- tab options -->
-    <div class="col-6 justify-content-end viewOption">
+    <div class="col-md-7 col-sm-8 col-xs-6 justify-content-end" style="text-align: center">
       <div class="row mr-2 justify-content-end">
         <ul class="nav nav-pills" ng-model="calendarView">
           <li class="nav-item active" ng-class="{'active': vm.isTab(1)}">
@@ -27,16 +27,16 @@
     <div class="col-sm-12 col-xs-12">
       <section id="monthView" ng-controller="MonthViewCtrl as mv" ng-show="vm.isTab(1)">
         <div class="row align-items-center justify-content-start" id="view">
-          <div class="col-md-1 col-sm-2 col-2" align="center">
-            <button class="btn btn-dark arrow-rounded" ng-click="mv.changeMonth(-1)">
+          <div class="col-md-2 col-sm-2 col-2" align="right">
+            <button class="btn btn-light arrow-rounded" ng-click="mv.changeMonth(-1)">
               <i class="mdi mdi-chevron-left more" style="cursor:pointer"></i>
             </button>
           </div>
           <div class="col-lg-2 col-md-6 col-sm-8 col-8" align="center">
             {{mv.monthList[mv.shownMonth]}} de {{mv.shownYear}}
           </div>
-          <div class="col-md-1 col-sm-2 col-2" align="center">
-            <button class="btn btn-dark arrow-rounded" ng-click="mv.changeMonth(1)">
+          <div class="col-md-2 col-sm-2 col-2" align="left">
+            <button class="btn btn-light arrow-rounded" ng-click="mv.changeMonth(1)">
               <i class="mdi mdi-chevron-right more" style="cursor:pointer"></i>
             </button>
           </div>
@@ -46,10 +46,10 @@
             <div class="table-responsive-sm">
               <table class="table table-bordered">
                 <thead>
-                  <tr>
+                  <tr class="full-text" ng-model="weekList">
                     <th scope="col" ng-repeat="y in mv.weekDayList">
                       <div class="row justify-content-center">
-                        <div class="col-sm-12 col-12" style="width: 14% !important;" align="center">
+                        <div class="col-sm-12 col-12 table-head" style="width: 14% !important;" align="center">
                           {{y}}
                         </div>
                       </div>
@@ -58,9 +58,9 @@
                 </thead>
                 <tbody>
                   <tr class="week" ng-repeat="(key, week) in mv.monthWeeks">
-                    <td style="min-width: 14% !important;" ng-repeat="day in week track by $index">
+                    <td scope = "col" ng-repeat="day in week track by $index">
                       <div class="row justify-content-end" id="day">
-                        <div class="col-10" align="right">
+                        <div class="col-sm-12 col-12 table-body" align="right">
                           {{day}}
                         </div>
                       </div>

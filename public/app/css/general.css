@@ -1,3 +1,7 @@
+.container-fluid{
+    font-family: 'Roboto', sans-serif;
+}
+
 .arrow-rounded{
     color: white;
     text-align: center;
@@ -5,4 +9,51 @@
     width: 40px;
     height: 40px;
     border-radius: 20px !important;
+}
+
+ /* Hide short text by default (resolution > 1200px) */
+ .table-head{
+    font-size: 16px;
+}
+.myCalendar{
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.table-body{
+    font-size: 16px;
+}
+
+/* When resolution <= 1200px, hide short text and show full text */
+@media (max-width: 860px) {
+    .table-head{
+        font-size: 13px;
+    }
+    .table-body{
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 730px){
+    .myCalendar{
+        font-size: 17px;
+}
+}
+
+@media (max-width: 610px) {
+    .myCalendar{
+        font-size: 15px;
+    }
+    .table-head{
+        font-size: 10px;
+    }
+    .table-body{
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 590px) {
+    .viewOptions{
+        font-size: 12px !important;
+    }
 }
