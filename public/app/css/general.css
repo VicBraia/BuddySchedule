@@ -24,6 +24,18 @@
     font-size: 16px;
 }
 
+.week{
+    cursor: text;
+}
+
+.days{
+    cursor: text;
+    text-decoration: none !important;
+    color: black;
+    pointer-events: none !important;
+    cursor: pointer;
+}
+
 /* When resolution <= 1200px, hide short text and show full text */
 @media (max-width: 860px) {
     .table-head{
@@ -37,7 +49,7 @@
 @media (max-width: 730px){
     .myCalendar{
         font-size: 17px;
-}
+    }
 }
 
 @media (max-width: 610px) {
@@ -55,5 +67,11 @@
 @media (max-width: 590px) {
     .viewOptions{
         font-size: 12px !important;
+    }
+}
+
+@media (max-width: 460px) {
+    .table-head{
+        font-size: 7px !important;
     }
 }

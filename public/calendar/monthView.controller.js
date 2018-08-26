@@ -38,30 +38,19 @@
         vm.monthWeeks = [];
 
         vm.changeMonth = changeMonth;
+        vm.checkDate = checkDate;
         vm.weekList = {};
+
+        function checkDate(day){
+            $("#createEvent").modal();
+        }
+
         activate();
 
         function activate() {
             vm.monthWeeks = initializeMonth(vm.shownMonth);      
-            if ($(window).width() < 960) {
-                vm.weekList = vm.abbrevWeekDayList;
-             }
-             else {
-                vm.weekList = vm.weekDayList;
-            }        
+            vm.weekList = vm.weekDayList;
         }
-
-        
-        $(window).on('resize', function () {            
-            if ($(window).width() < 960) {
-                vm.weekList = vm.abbrevWeekDayList;
-             }
-             else {
-                vm.weekList = vm.weekDayList;
-            }
-            console.log(vm.weekList);
-            
-        });
 
         function initializeMonth(month) {
             var daysToBeShown = [];

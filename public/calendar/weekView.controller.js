@@ -38,6 +38,7 @@
         vm.monthWeeks = [];    
 
         vm.changeWeek = changeWeek;
+        vm.checkHour = checkHour;
 
         activate();
         
@@ -45,6 +46,10 @@
             vm.week = getWeek(vm.today);
             vm.hours = initializeHours();
             //console.log(vm.week);
+        }
+
+        function checkHour(hour){
+            $("#createEvent").modal();
         }
 
         function initializeHours(){

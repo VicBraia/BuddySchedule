@@ -32,6 +32,7 @@
         vm.abbrevWeekDayList = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 
         vm.changeDay = changeDay;
+        vm.checkHour = checkHour;
 
         activate();
         
@@ -39,6 +40,10 @@
             vm.date = getDate(0);
             initializeCharacteristics(vm.date);            
             vm.hours = initializeHours();
+        }
+
+        function checkHour(hour){
+            $("#createEvent").modal();
         }
 
         function initializeCharacteristics(date){

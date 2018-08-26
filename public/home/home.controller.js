@@ -23,6 +23,8 @@
         activate();
         
         function activate() {
+            console.log(resolvedEvents);
+            
             vm.tab = 1;
         }
     }
