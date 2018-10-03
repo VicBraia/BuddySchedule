@@ -6,10 +6,10 @@
         .controller('MonthViewCtrl', MonthViewCtrl);
 
 
-    MonthViewCtrl.$inject = ['$scope', '$state', 'EventFactory'];
+    MonthViewCtrl.$inject = ['$scope', '$state', 'CalendarFactory', '$stateParams'];
 
     /* @ngInject */
-    function MonthViewCtrl($scope, $state, EventFactory) {
+    function MonthViewCtrl($scope, $state, CalendarFactory, $stateParams) {
         var vm = this;
         vm.today = moment(new Date());
         vm.currentMonth = vm.today.format('MM'); // get from monthList
@@ -22,48 +22,52 @@
         vm.shownMonth = {};
         vm.shownYear = {};
         vm.shownWeekDay = {};
-
-        vm.currentView = 0;
-        vm.currentViewList = ['Month', 'Week', 'Day'];
+        vm.eventsToBeShown = [];
 
         vm.monthList = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
         vm.weekDayList = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
-        vm.abbrevMonthList = ['Jan', 'Fev', 'Mar', 'Abri', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-        vm.abbrevWeekDayList = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 
         vm.shownDay = vm.currentDay;
         vm.shownYear = vm.currentYear;
         vm.shownWeekDay = vm.weekDayList[vm.currentWeekDay];
         vm.shownMonth = vm.currentMonth - 1;
         vm.monthWeeks = [];
-
-        vm.changeMonth = changeMonth;
-        vm.checkDate = checkDate;
         vm.weekList = {};
 
-        function checkDate(day){
-            $("#createEvent").modal();
-        }
+        vm.changeMonth = changeMonth;
+        // vm.checkDate = checkDate;
+        //modal: Add Event.
+        vm.dayDetailed = {};
+        vm.eventToBeAdded = {};
 
         activate();
 
-        function activate() {
+        function activate() {            
             vm.monthWeeks = initializeMonth(vm.shownMonth);      
             vm.weekList = vm.weekDayList;
+            vm.eventList = CalendarFactory.getAll().$loaded(function(data){
+                console.log(data);
+                vm.eventList = data;
+                return data;
+            });          
         }
 
         function initializeMonth(month) {
             var daysToBeShown = [];
-            var date;
+            var eventsToBeShown = [];
+            var events;
+            var date = {};
+            var aux;
             var day = new Date(vm.currentYear, month, 1);
             var weekDay = day.getDay();
 
             while (weekDay != 0) { //get dates from previous month that appear in the first week of the current month
-                date = new Date(vm.currentYear, month, -weekDay + 1);
-                date = date.getDate();
+                aux = new Date(vm.currentYear, month, -weekDay + 1);
+                date = aux.getDate();
                 daysToBeShown.push(date);
                 weekDay--;
             }
+            
 
             while (day.getMonth() == month) { //get current month's dates
                 date = day.getDate();
@@ -71,14 +75,14 @@
                 daysToBeShown.push(date);
             }
 
-            for (var i = day.getDay(); i <= 6; i++) {
+            for (var i = day.getDay(); i <= 6; i++) {//get dates from next month which appear in the last week of the current month
                 date = day.getDate();
                 day.setDate(day.getDate() + 1);
                 daysToBeShown.push(date);
             }
 
             var calendarWeeks = [];
-            for (var i = 0; i < daysToBeShown.length; i += 7) {
+            for (var i = 0; i < daysToBeShown.length; i += 7) { //separate weeks
                 var tmp = daysToBeShown.slice(i, i + 7);
                 calendarWeeks.push(tmp);
             }
@@ -105,6 +109,13 @@
                     break;
             }
         }
+
+        // function checkDate(day, event){
+        //     var date = day + '/' + vm.shownMonth + '/' + vm.shownYear;
+        //     console.log(date);
+            
+        //     return event.date === date;
+        // }
     }
 })();
 

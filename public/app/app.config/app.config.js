@@ -8,12 +8,12 @@
 
   function config($urlRouterProvider, $stateProvider){
     var appState = {
-          name: 'app',
-          url: '/app',
-          templateUrl: 'toolbar/toolbar.html',
-          abstract: true,
-          controller: 'ToolbarCtrl',
-          controllerAs: 'vm'
+      name: 'app',
+      url: '/app',
+      templateUrl: 'toolbar/toolbar.html',
+      abstract: true,
+      controller: 'ToolbarCtrl',
+      controllerAs: 'vm'
     }
     var homeState = {
       name: 'app.home',

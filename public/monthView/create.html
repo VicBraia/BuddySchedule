@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-dialog modal-md modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="createPersonLabel">Criar Evento</h5>
+        <h5 class="modal-title" id="createEvent">Criar Evento</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -12,19 +12,19 @@
           <div class="row justify-content-center">
             <div class="col-9">
               <label class="col-form-label">Nome:</label>
-              <input ng-model="vm.event.title" type="text" class="form-control input">
+              <input ng-model="vm.eventToBeAdded.title" type="text" class="form-control input">
               <label class="col-form-label">Data:</label>
-              <input ng-model="vm.event.dateToBeShown" type="text" class="form-control input">
+              <input ng-model="vm.dayDetailed" type="text" class="form-control input">
               <label class="col-form-label profile">Horário:</label>
               <div class="row justify-content-center" id="time">
                 <span class="col-2">From</span>
-                <input ng-model="vm.eventToBeAdded.startTime" type="text" class="form-control input col-3 ml-2" id="timeBegin">
+                <input ng-model="vm.eventToBeAdded.startTime" type="text" class="form-control input col-3 ml-2" id="timeBegin" ng-disabled="vm.eventToBeAdded.allDay">
                 <span class="col-1">to</span>
-                <input ng-model="vm.eventToBeAdded.endTime" type="text" class="form-control input col-3 ml-2" id="timeEnd">
+                <input ng-model="vm.eventToBeAdded.endTime" type="text" class="form-control input col-3 ml-2" id="timeEnd" ng-disabled="vm.eventToBeAdded.allDay">
               </div>
-              <div class=" row form-check justify-content-center pt-2">
-                <input type="checkbox" class="form-check-input col-2 pr-4" id="checkAllDay">
-                <label class="form-check-label col-10 pl-4" for="exampleCheck1">Evento durante todo o dia</label>
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" ng-model="vm.eventToBeAdded.allDay" class="custom-control-input" id="check-allDay">
+                <label class="custom-control-label" for="check-allDay">Evento durante todo o dia</label>
               </div>
             </div>
           </div>
@@ -37,3 +37,5 @@
     </div>
   </div>
 </div>
+
+
