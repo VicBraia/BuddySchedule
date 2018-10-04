@@ -35,7 +35,9 @@
         vm.weekList = {};
 
         vm.changeMonth = changeMonth;
-        // vm.checkDate = checkDate;
+        vm.checkDate = checkDate;
+        vm.getEventDetails = getEventDetails;
+        
         //modal: Add Event.
         vm.dayDetailed = {};
         vm.eventToBeAdded = {};
@@ -46,7 +48,6 @@
             vm.monthWeeks = initializeMonth(vm.shownMonth);      
             vm.weekList = vm.weekDayList;
             vm.eventList = CalendarFactory.getAll().$loaded(function(data){
-                console.log(data);
                 vm.eventList = data;
                 return data;
             });          
@@ -54,8 +55,6 @@
 
         function initializeMonth(month) {
             var daysToBeShown = [];
-            var eventsToBeShown = [];
-            var events;
             var date = {};
             var aux;
             var day = new Date(vm.currentYear, month, 1);
@@ -110,12 +109,15 @@
             }
         }
 
-        // function checkDate(day, event){
-        //     var date = day + '/' + vm.shownMonth + '/' + vm.shownYear;
-        //     console.log(date);
-            
-        //     return event.date === date;
-        // }
+        function checkDate(day){
+            var date = day + '/' + vm.shownMonth + '/' + vm.shownYear;            
+           return date;
+        }
+
+        function getEventDetails(eventId){
+            vm.eventDetailed = CalendarFactory.getById(eventId).$loaded();
+            return vm.eventDetailed;
+        }
     }
 })();
 

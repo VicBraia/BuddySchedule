@@ -63,15 +63,16 @@
                 <tbody>
                   <tr class="week" ng-repeat="(key, week) in mv.monthWeeks">
                     <td scope="col" ng-repeat="day in week track by $index">
-                      <div class="row justify-content-end" id="day" style="cursor: pointer" 
+                      <div class="row justify-content-end" id="day" style="z-index: 0; cursor: pointer" 
                       data-toggle="modal" data-target="#createEvent" 
-                      ng-click="vm.setDetails(day, mv.shownMonth, mv.shownYear)">
+                      ng-dblclick="vm.setDetails(day, mv.shownMonth, mv.shownYear)">
                         <div class="col-sm-12 col-12 table-body" align="right">
                           {{day}}
                         </div>
-                        <!-- <div ng-repeat="event in mv.eventList" ng-click="mv.checkDate(day, event)">
+                        <a class="col-12" ng-repeat="event in mv.eventList" ng-if="event.date === mv.checkDate(day)" 
+                        style="background-color:red; z-index: 1; cursor: pointer">
                           {{event.title}}
-                        </div> -->
+                        </a>
                       </div>
                     </td>
                   </tr>

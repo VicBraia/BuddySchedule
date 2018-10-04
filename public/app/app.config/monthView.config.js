@@ -24,8 +24,8 @@
       }
 
     $stateProvider.state(createState);
-    $stateProvider.state(dayDetailState);
-    
+    $stateProvider.state(dayDetailState);    
+
     $urlRouterProvider.otherwise('/app/home');
 
   }

@@ -10,22 +10,116 @@
       <div class="modal-body">
         <div class="form-group">
           <div class="row justify-content-center">
-            <div class="col-9">
-              <label class="col-form-label">Nome:</label>
+            <div class="col-12 mr-5 ml-5">
+              <label class="col-form-label">NOME:</label>
               <input ng-model="vm.eventToBeAdded.title" type="text" class="form-control input">
-              <label class="col-form-label">Data:</label>
+            </div>
+          </div>
+          <div class="row justify-content-center mt-3">
+            <div class="col-6">
+              <label class="col-form-label">DATA:</label>
               <input ng-model="vm.dayDetailed" type="text" class="form-control input">
-              <label class="col-form-label profile">Horário:</label>
-              <div class="row justify-content-center" id="time">
-                <span class="col-2">From</span>
-                <input ng-model="vm.eventToBeAdded.startTime" type="text" class="form-control input col-3 ml-2" id="timeBegin" ng-disabled="vm.eventToBeAdded.allDay">
-                <span class="col-1">to</span>
-                <input ng-model="vm.eventToBeAdded.endTime" type="text" class="form-control input col-3 ml-2" id="timeEnd" ng-disabled="vm.eventToBeAdded.allDay">
+            </div>
+            <div class="col-6">
+              <label class="col-form-label profile">HORÁRIO:</label>
+              <div class="row justify-content-center pr-3 pl-3" id="time">
+                <span class="col-3 align-items-center">De</span>
+                <input ng-model="vm.eventToBeAdded.startTime" type="text" class="form-control input col-3" id="timeBegin" ng-disabled="vm.eventToBeAdded.allDay">
+                <span class="col-3">até</span>
+                <input ng-model="vm.eventToBeAdded.endTime" type="text" class="form-control input col-3" id="timeEnd" ng-disabled="vm.eventToBeAdded.allDay">
               </div>
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" ng-model="vm.eventToBeAdded.allDay" class="custom-control-input" id="check-allDay">
-                <label class="custom-control-label" for="check-allDay">Evento durante todo o dia</label>
+            </div>
+          </div>
+          <div class="row justify-content-start mt-4">
+            <div class="col-6 pl-0" id="color-picker">
+              <label class="col-4 col-form-label">COR:</label>
+              <div class="col-7 btn-group justify-content-center">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Escolha uma cor
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">
+                    <div class="col-2" style="background-color: red; border-color: black">
+                      <div class="col-8 ml-2">
+                        Vermelho
+                      </div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <div class="col-2" style="background-color: orange; border-color: black">
+                      <div class="col-8 ml-2">
+                        Laranja
+                      </div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <div class="col-2" style="background-color: Yellow; border-color: black">
+                      <div class="col-8 ml-2">
+                        Amarelo
+                      </div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <div class="col-2" style="background-color: green; border-color: black">
+                      <div class="col-8 ml-2">
+                        Verde
+                      </div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <div class="col-2" style="background-color: blue; border-color: black">
+                      <div class="col-8 ml-2">
+                        Azul
+                      </div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <div class="col-2" style="background-color: purple; border-color: black">
+                      <div class="col-8 ml-2">
+                        Roxo
+                      </div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <div class="col-2" style="background-color: pink; border-color: black">
+                      <div class="col-8 ml-2">
+                        Rosa
+                      </div>
+                    </div>
+                  </a>
+                </div>
               </div>
+            </div>
+            <div class="col-6 pl-0 p-0">
+              <label class="col-5 col-form-label justify-content-start">ALARME:</label>
+              <div class="col-6 pl-0 pr-0 btn-group justify-content-start">
+                  <button type="button" class="col-12 pr-0 btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Som
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">
+                      Padrão
+                    </a>
+                    <a class="dropdown-item" href="#">
+                      Beep
+                    </a>
+                    <a class="dropdown-item" href="#">
+                      Sirene
+                    </a>
+                    <a class="dropdown-item" href="#">
+                      Música
+                    </a>
+                    <a class="dropdown-item" href="#">
+                      Gravação Customizada
+                    </a>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="row justify-content-start mt-4 ml-1">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" ng-model="vm.eventToBeAdded.allDay" class="custom-control-input" id="check-allDay">
+              <label class="custom-control-label" for="check-allDay">Evento durante todo o dia</label>
             </div>
           </div>
         </div>
@@ -36,6 +130,3 @@
       </div>
     </div>
   </div>
-</div>
-
-

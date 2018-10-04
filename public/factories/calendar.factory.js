@@ -13,7 +13,6 @@
       var calendarList = $firebaseArray(calendarRootRef);
 
         var service = {
-            getAll: getAll,
             addEvent: addEvent,
             getAll: getAll,
             getById: getById,
@@ -23,10 +22,12 @@
 
         return service;
 
-        function getAll(){
-            return calendarList;
+        function getById(eventId){
+          var eventRef = calendarRootRef.child(eventId);
+          var event = $firebaseObject(eventRef);
+          return event;
         }
-
+        
         function addEvent(event){
           return calendarList.$add(event);
         }
