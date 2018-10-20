@@ -1,0 +1,206 @@
+<div ng-include src="'monthView/dayDetails.html'"></div>
+<div ng-include src="'monthView/create.html'"></div>
+<div class="container">
+  <div class="row mt-3 title align-items-center">
+    <div class="myCalendar col-md-4 col-sm-4 col-xs-6 title pt-2 pb-2" style="text-align: center">
+      Meu Calendário
+    </div>
+
+    <div class="col-md-7 col-sm-8 col-xs-6 justify-content-end" style="text-align: center">
+      <div class="row mr-2 justify-content-end align-items-center">
+        <!-- a day was selected -->
+        <div class="col-2 p-1" ng-if="vm.dayOptions != false">
+          <button class="btn btn-primary">Ver dia</button>
+        </div>
+        <div class="col-2 p-1" ng-if="vm.dayOptions != false">
+          <button class="col-12 pr-0 pl-0 btn btn-primary" ng-click="vm.createModal();">+ evento</button>
+        </div>
+        <!-- no day is selected -->
+        <div class="col-2 p-1" ng-if="vm.dayOptions === false">
+          <button class="btn btn-primary">Hoje <-</button>
+        </div>
+        <div class="col-2 p-1" ng-if="vm.dayOptions ===false">
+          <button class="col-12 pr-0 pl-0 btn btn-primary" ng-click="vm.createModal();">+ evento</button>
+        </div>
+        <!-- tab options -->
+        <div class="col-lg-5 col-md-8 col-sm-8 justify-content-end">
+          <ul class="nav nav-pills" ng-model="calendarView">
+            <li class="nav-item active" ng-class="{'active': vm.isTab(1)}">
+              <a class="nav-link active" href="#monthView" ng-click="vm.selectTab(1)" role="tab" data-toggle="tab">Mês</a>
+            </li>
+            <li class="nav-item" ng-class="{'active': vm.isTab(2)}">
+              <a class="nav-link" href="#weekView" ng-click="vm.selectTab(2)" role="tab" data-toggle="tab">Semana</a>
+            </li>
+            <li class="nav-item" ng-class="{'active': vm.isTab(3)}">
+              <a class="nav-link" href ng-click="vm.selectTab(3)" role="tab" data-toggle="tab">Dia</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- month view -->
+  <div class="row">
+    <div class="col-sm-12 col-xs-12">
+      <section id="monthView" ng-controller="MonthViewCtrl as mv" ng-show="vm.isTab(1)">
+        <div class="row align-items-center justify-content-start" id="view">
+          <div class="col-md-2 col-sm-2 col-2" align="right">
+            <button class="btn btn-light arrow-rounded" ng-click="mv.changeMonth(-1)">
+              <i class="mdi mdi-chevron-left more" style="cursor:pointer"></i>
+            </button>
+          </div>
+          <div class="col-lg-2 col-md-8 col-sm-8 col-8" align="center">
+            {{mv.monthList[mv.shownMonth]}} de {{mv.shownYear}}
+          </div>
+          <div class="col-md-2 col-sm-2 col-2" align="left">
+            <button class="btn btn-light arrow-rounded" ng-click="mv.changeMonth(1)">
+              <i class="mdi mdi-chevron-right more" style="cursor:pointer"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row mt-3 justify-content-center">
+          <div class="col-md-10 col-sm-12 col-12" id="monthView">
+            <div class="table-responsive-sm">
+              <table class="table table-bordered">
+                <thead>
+                  <tr class="full-text" ng-model="weekList">
+                    <th scope="col" ng-repeat="y in mv.weekDayList">
+                      <div class="row justify-content-center">
+                        <div class="col-sm-12 col-12 table-head" style="width: 14% !important;" align="center">
+                          {{y}}
+                        </div>
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="week" ng-repeat="(key, week) in mv.monthWeeks">
+                    <td scope="col" ng-repeat="date in week track by $index">
+                      <div class="row justify-content-end" id="day" style="z-index: 0; cursor: pointer" ng-click="vm.dayOptions = date" style="z-index: 1;">
+                        <div class="col-sm-12 col-12 table-body" align="right">
+                          {{date.day}}
+                        </div>
+                        <div class="col-12" id="event" ng-repeat="event in mv.eventList" ng-if="vm.dayOptions == false && event.date === mv.checkDate(day)"
+                          style="background-color:black; z-index: 10; cursor: pointer">
+                          {{event.title}}
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+      </section>
+      </div>
+    </div>
+
+    <!-- week view -->
+    <div class="panel text-center" ng-show="vm.isTab(2)">
+      <section id="weekView" ng-controller="WeekViewCtrl as wv">
+        <div class="row align-items-center justify-content-start" id="view">
+          <div class="col-md-2 col-sm-2 col-2" align="right">
+            <button class="btn btn-light arrow-rounded" align="left" ng-click="wv.changeWeek(-1)">
+              <i class="mdi mdi-chevron-left more" style="cursor:pointer"></i>
+            </button>
+          </div>
+          <div class="col-lg-2 col-md-8 col-sm-8 col-8" align="center">
+            {{wv.week[0]}} a {{wv.week[6]}} de {{wv.monthList[wv.shownMonth]}}
+          </div>
+          <div class="col-md-2 col-sm-2 col-2" align="left">
+            <button class="btn btn-light arrow-rounded" align="right" ng-click="wv.changeWeek(1)">
+              <i class="mdi mdi-chevron-right more" style="cursor:pointer"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row mt-3 justify-content-center">
+          <div class="col-md-10 col-sm-12 col-12" id="week-view">
+            <table class="table table-bordered table-fixed">
+              <thead>
+                <tr>
+                  <th>
+                    <div class="col-xs-3">
+
+                    </div>
+                  </th>
+                  <th scope="col" ng-repeat="(key,day) in wv.week" class="col-xs-8 table-title week">
+                    <div class="row justify-content-center">
+                      <div class="col-12 table-head" align="center">
+                        {{day}} {{wv.weekDayList[key]}}
+                      </div>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="time" ng-repeat="hour in wv.hours">
+                  <td>
+                    <div class="row justify-content-center">
+                      <div class="col-12 table-head" align="center">
+                        {{hour}}
+                      </div>
+                      <div>
+                  </td>
+                  <td class="col-xs-8" ng-click="wv.checkHour(hour)" ng-repeat="(key,day) in wv.week" style="cursor: pointer">
+                    <div>
+
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+            </div>
+      </section>
+      </div>
+
+      <!-- day view -->
+      <div class="panel text-center" ng-show="vm.isTab(3)">
+        <section id="dayView" ng-controller="DayViewCtrl as dv">
+          <div class="row justify-content-center mt-5">
+            <div class="col-md-2 col-sm-2 col-2 align-items-center" align="right">
+              <button class="btn btn-light arrow-rounded" align="left" ng-click="dv.changeDay(-1)">
+                <i class="mdi mdi-chevron-left more" style="cursor:pointer"></i>
+              </button>
+            </div>
+            <div class="col-8" id="week-view">
+              <table class="table table-bordered table-fixed">
+                <thead>
+                  <tr>
+                    <th class="invisible-border">
+
+                    </th>
+                    <th>
+                      {{dv.shownDay}} de {{dv.shownMonth}} de {{dv.shownYear}}
+                      <br> {{dv.shownWeekDay}}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="time" ng-repeat="hour in dv.hours">
+                    <td style="width: 60px">
+                      <div class="row justify-content-center">
+                        <div class="col-12" align="center">
+                          {{hour}}
+                        </div>
+                    </td>
+                    <td ng-click="dv.checkHour(hour)" style="cursor: pointer">
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+              <div class="col-md-2 col-sm-2 col-2" align="left">
+                <button class="btn btn-light arrow-rounded align-items-center" align="right" ng-click="dv.changeDay(1)">
+                  <i class="mdi mdi-chevron-right more" style="cursor:pointer"></i>
+                </button>
+              </div>
+            </div>
+        </section>
+        </div>
+
+      </div>

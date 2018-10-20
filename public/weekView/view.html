@@ -1,0 +1,53 @@
+<div class="row align-items-center justify-content-start" id="view">
+  <div class="col-md-2 col-sm-2 col-2" align="right">
+    <button class="btn btn-light arrow-rounded" align="left" ng-click="vm.changeWeek(-1)">
+      <i class="mdi mdi-chevron-left more" style="cursor:pointer"></i>
+    </button>
+  </div>
+  <div class="col-lg-2 col-md-8 col-sm-8 col-8" align="center">
+    {{vm.week[0]}} a {{vm.week[6]}} de {{vm.monthList[vm.shownMonth]}}
+  </div>
+  <div class="col-md-2 col-sm-2 col-2" align="left">
+    <button class="btn btn-light arrow-rounded" align="right" ng-click="vm.changeWeek(1)">
+      <i class="mdi mdi-chevron-right more" style="cursor:pointer"></i>
+    </button>
+  </div>
+</div>
+<div class="row mt-3 justify-content-center">
+  <div class="col-md-10 col-sm-12 col-12" id="week-view">
+    <table class="table table-bordered table-fixed">
+      <thead>
+        <tr>
+          <th>
+            <div class="col-xs-3">
+
+            </div>
+          </th>
+          <th scope="col" ng-repeat="(key,day) in vm.week" class="col-xs-8 table-title week">
+            <div class="row justify-content-center">
+              <div class="col-12 table-head" align="center">
+                {{day}} {{vm.weekDayList[key]}}
+              </div>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="time" ng-repeat="hour in vm.hours">
+          <td>
+            <div class="row justify-content-center">
+              <div class="col-12 table-head" align="center">
+                {{hour}}
+              </div>
+              <div>
+          </td>
+          <td class="col-xs-8" ng-click="vm.checkHour(hour)" ng-repeat="(key,day) in vm.week" style="cursor: pointer">
+            <div>
+
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </div>

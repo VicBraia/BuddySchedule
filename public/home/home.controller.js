@@ -1,51 +1,27 @@
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('buddy-schedule')
         .controller('HomeCtrl', HomeCtrl);
 
-
-        HomeCtrl.$inject = ['$scope', '$state', 'EventFactory', 'CalendarFactory', 'resolvedEvents'];
+    HomeCtrl.$inject = ['$scope', '$state'];
 
     /* @ngInject */
-    function HomeCtrl($scope, $state, EventFactory, CalendarFactory, resolvedEvents) {
+    function HomeCtrl($scope, $state) {
         var vm = this;
-        vm.dayDetails = getDayDetails;
-        vm.setDetails = setDetails;
-        vm.saveAddition = saveAddition;
-        vm.eventToBeAdded = new Object();
-
-        vm.selectTab = function(setTab){
-            vm.tab = setTab;            
-          };
-      
-        vm.isTab = function(checkTab){
-            return vm.tab === checkTab;
-        }; 
+        vm.createModal = openCreateModal;
 
         activate();
+
+        function activate() {
+            vm.tab = 0;
+            vm.dayOptions = false;
+        }
         
-        function activate() {            
-            vm.tab = 1;
-        }
-
-        function getDayDetails(){
-            
-        }
-
-        function setDetails(day, month, year){
-            vm.dayDetailed = day + '/' + month + '/' + year;  
-            console.log(vm.dayDetailed);
-        }
-
-        function saveAddition(){
-            vm.eventToBeAdded.date = vm.dayDetailed;
-            CalendarFactory.addEvent(vm.eventToBeAdded);
-            vm.eventToBeAdded = null;
+        function openCreateModal(){
+            // vm.eventToBeAdded.day = vm.dayOptions.day;
+            $("#createEvent").modal();
         }
     }
-
 })();
-
-        

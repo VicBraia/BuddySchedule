@@ -1,0 +1,40 @@
+<div class="row justify-content-center mt-5">
+    <div class="col-md-2 col-sm-2 col-2 align-items-center" align="right">
+        <button class="btn btn-light arrow-rounded" align="left" ng-click="vm.changeDay(-1)">
+            <i class="mdi mdi-chevron-left more" style="cursor:pointer"></i>
+        </button>
+    </div>
+    <div class="col-8" id="week-view">
+        <table class="table table-bordered table-fixed">
+            <thead>
+                <tr>
+                    <th class="invisible-border">
+
+                    </th>
+                    <th>
+                        {{vm.shownDay}} de {{vm.shownMonth}} de {{vm.shownYear}}
+                        <br> {{vm.shownWeekDay}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="time" ng-repeat="hour in vm.hours">
+                    <td style="width: 60px">
+                        <div class="row justify-content-center">
+                            <div class="col-12" align="center">
+                                {{hour}}
+                            </div>
+                    </td>
+                    <td ng-click="vm.checkHour(hour)" style="cursor: pointer">
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <div class="col-md-2 col-sm-2 col-2" align="left">
+            <button class="btn btn-light arrow-rounded align-items-center" align="right" ng-click="vm.changeDay(1)">
+                <i class="mdi mdi-chevron-right more" style="cursor:pointer"></i>
+            </button>
+        </div>
+    </div>

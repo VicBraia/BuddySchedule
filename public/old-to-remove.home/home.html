@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row mt-3 title align-items-center">
+    <div class="myCalendar col-md-4 col-sm-4 col-xs-6 title pt-2 pb-2" style="text-align: center">
+      Meu Calendário
+    </div>
+
+    <div class="col-md-7 col-sm-8 col-xs-6 justify-content-end" style="text-align: center">
+      <div class="row mr-2 justify-content-end align-items-center">
+        <!-- a day was selected -->
+        <div class="col-2 p-1" ng-if="vm.dayOptions != false">
+          <button class="btn btn-primary">Ver dia</button>
+        </div>
+        <div class="col-2 p-1" ng-if="vm.dayOptions != false">
+          <button class="col-12 pr-0 pl-0 btn btn-primary" ng-click="vm.createModal();">+ evento</button>
+        </div>
+        <!-- no day is selected -->
+        <div class="col-2 p-1" ng-if="vm.dayOptions === false">
+          <button class="btn btn-primary">Hoje
+            <-</button>
+        </div>
+        <div class="col-2 p-1" ng-if="vm.dayOptions ===false">
+          <button class="col-12 pr-0 pl-0 btn btn-primary" ng-click="vm.createModal();">+ evento</button>
+        </div>
+        <!-- tab options -->
+        <div class="col-lg-5 col-md-8 col-sm-8 justify-content-end">
+          <ul class="nav nav-pills" ng-model="calendarView">
+            <li class="nav-item active">
+              <a class="nav-link active" href="#monthView" ng-click="vm.tab = 0" role="tab" data-toggle="tab">Mês</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#weekView" ng-click="vm.tab = 1" role="tab" data-toggle="tab">Semana</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href ng-click="vm.tab = 2" role="tab" data-toggle="tab">Dia</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-if="vm.tab == 0">
+    <ui-view name="monthView"></ui-view>
+  </div>
+  <div ng-if="vm.tab == 1">
+    <ui-view name="weekView"></ui-view>
+  </div>
+  <div ng-if="vm.tab == 2">
+    <ui-view name="dayView"></ui-view>
+  </div>
+
+ 
+
+      <!-- day view -->
+    
+
+      </div>

@@ -62,20 +62,26 @@
 
             while (weekDay != 0) { //get dates from previous month that appear in the first week of the current month
                 aux = new Date(vm.currentYear, month, -weekDay + 1);
-                date = aux.getDate();
+                date = {};
+                date.day = aux.getDate();
+                date.month=-1;
                 daysToBeShown.push(date);
                 weekDay--;
             }
             
 
             while (day.getMonth() == month) { //get current month's dates
-                date = day.getDate();
+                date = {};
+                date.day = day.getDate();
+                date.month = 0;
                 day.setDate(day.getDate() + 1);
                 daysToBeShown.push(date);
             }
 
             for (var i = day.getDay(); i <= 6; i++) {//get dates from next month which appear in the last week of the current month
-                date = day.getDate();
+                date = {};
+                date.day = day.getDate();
+                date.month = 1;
                 day.setDate(day.getDate() + 1);
                 daysToBeShown.push(date);
             }
@@ -85,6 +91,8 @@
                 var tmp = daysToBeShown.slice(i, i + 7);
                 calendarWeeks.push(tmp);
             }
+            console.log(calendarWeeks);
+            
             return calendarWeeks;
         }
 

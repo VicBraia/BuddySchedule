@@ -1,0 +1,54 @@
+ <!-- month view -->
+ <div class="row">
+        <div class="col-sm-12 col-xs-12">
+            <div class="row align-items-center justify-content-start" id="view">
+              <div class="col-md-2 col-sm-2 col-2" align="right">
+                <button class="btn btn-light arrow-rounded" ng-click="vm.changeMonth(-1)">
+                  <i class="mdi mdi-chevron-left more" style="cursor:pointer"></i>
+                </button>
+              </div>
+              <div class="col-lg-2 col-md-8 col-sm-8 col-8" align="center">
+                {{vm.monthList[vm.shownMonth]}} de {{vm.shownYear}}
+              </div>
+              <div class="col-md-2 col-sm-2 col-2" align="left">
+                <button class="btn btn-light arrow-rounded" ng-click="vm.changeMonth(1)">
+                  <i class="mdi mdi-chevron-right more" style="cursor:pointer"></i>
+                </button>
+              </div>
+            </div>
+            <div class="row mt-3 justify-content-center">
+              <div class="col-md-10 col-sm-12 col-12" id="monthView">
+                <div class="table-responsive-sm">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr class="full-text" ng-model="weekList">
+                        <th scope="col" ng-repeat="y in vm.weekDayList">
+                          <div class="row justify-content-center">
+                            <div class="col-sm-12 col-12 table-head" style="width: 14% !important;" align="center">
+                              {{y}}
+                            </div>
+                          </div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="week" ng-repeat="(key, week) in vm.monthWeeks">
+                        <td scope="col" ng-repeat="date in week track by $index">
+                          <div class="row justify-content-end" id="day" style="z-index: 0; cursor: pointer" ng-click="vm.dayOptions = date" style="z-index: 1;">
+                            <div class="col-sm-12 col-12 table-body" align="right">
+                              {{date.day}}
+                            </div>
+                            <div class="col-12" id="event" ng-repeat="event in vm.eventList" ng-if="vm.dayOptions == false && event.date === vm.checkDate(day)"
+                              style="background-color:black; z-index: 10; cursor: pointer">
+                              {{event.title}}
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+    
+                </div>
+              </div>
+          </div>
+        </div>

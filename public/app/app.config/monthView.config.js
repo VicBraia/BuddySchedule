@@ -25,9 +25,6 @@
 
     $stateProvider.state(createState);
     $stateProvider.state(dayDetailState);    
-
-    $urlRouterProvider.otherwise('/app/home');
-
   }
 
     function run($rootScope, $state){
