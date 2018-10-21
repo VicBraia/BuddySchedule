@@ -1,4 +1,3 @@
-<div ng-include src="'monthView/create.html'"></div>
 <div class="container-fluid">
   <nav class="row navbar navbar-expand-sm navbar-light bg-light w-auto">
     <div class="col-1">
@@ -43,21 +42,6 @@
 
       <div class="col-md-7 col-sm-8 col-xs-6 justify-content-end" style="text-align: center">
         <div class="row mr-2 justify-content-end align-items-center">
-          <!-- a day was selected -->
-          <div class="col-2 p-1" ng-if="vm.dayOptions != false">
-            <button class="btn btn-primary">Ver dia</button>
-          </div>
-          <div class="col-2 p-1" ng-if="vm.dayOptions != false">
-            <button class="col-12 pr-0 pl-0 btn btn-primary" ng-click="vm.createModal();">+ evento</button>
-          </div>
-          <!-- no day is selected -->
-          <div class="col-2 p-1" ng-if="vm.dayOptions === false">
-            <button class="btn btn-primary">Hoje
-              <-</button>
-          </div>
-          <div class="col-2 p-1" ng-if="vm.dayOptions ===false">
-            <button class="col-12 pr-0 pl-0 btn btn-primary" ng-click="vm.createModal();">+ evento</button>
-          </div>
           <!-- tab options -->
           <div class="col-lg-5 col-md-8 col-sm-8 justify-content-end">
             <ul class="nav nav-pills" ng-model="calendarView">
@@ -82,7 +66,7 @@
       <ui-view name="weekView"></ui-view>
     </div>
     <div ng-if="vm.tab == 2">
-        <ui-view name="dayView"></ui-view>
-      </div>
+      <ui-view name="dayView"></ui-view>
+    </div>
   </div>
 </div>

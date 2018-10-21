@@ -1,54 +1,75 @@
- <!-- month view -->
- <div class="row">
-        <div class="col-sm-12 col-xs-12">
-            <div class="row align-items-center justify-content-start" id="view">
-              <div class="col-md-2 col-sm-2 col-2" align="right">
-                <button class="btn btn-light arrow-rounded" ng-click="vm.changeMonth(-1)">
-                  <i class="mdi mdi-chevron-left more" style="cursor:pointer"></i>
-                </button>
-              </div>
-              <div class="col-lg-2 col-md-8 col-sm-8 col-8" align="center">
-                {{vm.monthList[vm.shownMonth]}} de {{vm.shownYear}}
-              </div>
-              <div class="col-md-2 col-sm-2 col-2" align="left">
-                <button class="btn btn-light arrow-rounded" ng-click="vm.changeMonth(1)">
-                  <i class="mdi mdi-chevron-right more" style="cursor:pointer"></i>
-                </button>
-              </div>
-            </div>
-            <div class="row mt-3 justify-content-center">
-              <div class="col-md-10 col-sm-12 col-12" id="monthView">
-                <div class="table-responsive-sm">
-                  <table class="table table-bordered">
-                    <thead>
-                      <tr class="full-text" ng-model="weekList">
-                        <th scope="col" ng-repeat="y in vm.weekDayList">
-                          <div class="row justify-content-center">
-                            <div class="col-sm-12 col-12 table-head" style="width: 14% !important;" align="center">
-                              {{y}}
-                            </div>
-                          </div>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="week" ng-repeat="(key, week) in vm.monthWeeks">
-                        <td scope="col" ng-repeat="date in week track by $index">
-                          <div class="row justify-content-end" id="day" style="z-index: 0; cursor: pointer" ng-click="vm.dayOptions = date" style="z-index: 1;">
-                            <div class="col-sm-12 col-12 table-body" align="right">
-                              {{date.day}}
-                            </div>
-                            <div class="col-12" id="event" ng-repeat="event in vm.eventList" ng-if="vm.dayOptions == false && event.date === vm.checkDate(day)"
-                              style="background-color:black; z-index: 10; cursor: pointer">
-                              {{event.title}}
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-    
-                </div>
-              </div>
+<div ng-include src="'monthView/create.html'"></div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-xs-12">
+      <div class="row align-items-center justify-content-start" id="view">
+        <div class="col-md-2 col-sm-2 col-2" align="right">
+          <button class="btn btn-light arrow-rounded" ng-click="vm.changeMonth(-1)">
+            <i class="mdi mdi-chevron-left more" style="cursor:pointer"></i>
+          </button>
+        </div>
+        <div class="col-lg-2 col-md-8 col-sm-8 col-8" align="center">
+          {{vm.monthList[vm.shownMonth]}} de {{vm.shownYear}}
+        </div>
+        <div class="col-md-2 col-sm-2 col-2" align="left">
+          <button class="btn btn-light arrow-rounded" ng-click="vm.changeMonth(1)">
+            <i class="mdi mdi-chevron-right more" style="cursor:pointer"></i>
+          </button>
+        </div>
+      </div>
+      <!-- day options -->
+      <div class="col-10">
+        <div class="row justify-content-end align-items-center">
+          <!-- a day was selected -->
+          <div class="col-1 p-1" ng-if="vm.dayOptions == true">
+            <button class="btn btn-primary">Ver dia</button>
+          </div>
+          <div class="col-1 p-0 m-3" ng-if="vm.dayOptions == true">
+            <button class="col-12 pr-0 pl-0 btn btn-primary" ng-click="vm.createModal();">+ evento</button>
+          </div>
+          <!-- no day is selected -->
+          <div class="col-1 p-0" ng-if="vm.dayOptions == false">
+            <button class="btn btn-primary">Hoje
+              <-</button>
+          </div>
+          <div class="col-2 p-2" ng-if="vm.dayOptions == false">
+            <button class="col-12 pr-0 pl-0 btn btn-primary" ng-click="vm.createModal();">+ evento</button>
           </div>
         </div>
+      </div>
+      <!-- calendar view -->
+      <div class="row mt-3 justify-content-center">
+        <div class="col-md-10 col-sm-12 col-12" id="monthView">
+          <div class="table-responsive-sm">
+            <table class="table table-bordered">
+              <thead>
+                <tr class="full-text" ng-model="weekList">
+                  <th scope="col" ng-repeat="y in vm.weekDayList">
+                    <div class="row justify-content-center">
+                      <div class="col-sm-12 col-12 table-head" style="width: 14% !important;" align="center">
+                        {{y}}
+                      </div>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="week" ng-repeat="(key, week) in vm.monthWeeks">
+                  <td scope="col" ng-repeat="date in week track by $index">
+                    <div class="row justify-content-end" id="day" style="z-index: 0; cursor: pointer" ng-click="vm.selectDay(date)">
+                      <div class="col-sm-12 col-12 table-body" align="right">
+                        {{date.day}}
+                      </div>
+                      <div class="col-12" id="event" ng-repeat="event in vm.eventList" ng-if="vm.checkDate(date, event.date) === true" style="background-color:orange; z-index: 10; cursor: pointer">
+                        {{date.eventCount}} {{event.title}}
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

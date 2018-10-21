@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="createEvent">Criar Evento</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="vm.eventToBeAdded = null;">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -18,7 +18,9 @@
           <div class="row justify-content-center mt-3">
             <div class="col-6">
               <label class="col-form-label">DATA:</label>
-              <input ng-model="vm.dayDetailed" type="text" class="form-control input">
+              <datepicker>
+                  <input class="form-control input" ng-model="vm.eventToBeAdded.date" type="text" />
+              </datepicker>
             </div>
             <div class="col-6">
               <label class="col-form-label profile">HORÁRIO:</label>
@@ -32,88 +34,68 @@
           </div>
           <div class="row justify-content-start mt-4">
             <div class="col-6 pl-0" id="color-picker">
-              <label class="col-4 col-form-label">COR:</label>
+              <label class="col-4 col-form-label" for="color">COR:</label>
               <div class="col-7 btn-group justify-content-center">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Escolha uma cor
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">
+                <select class="form-control" id="color" ng-model="vm.eventToBeAdded.color" ng-init="vm.eventToBeAdded.color='blue'">
+                  <option value="red">
                     <div class="col-2" style="background-color: red; border-color: black">
                       <div class="col-8 ml-2">
                         Vermelho
                       </div>
                     </div>
-                  </a>
-                  <a class="dropdown-item" href="#">
+                  </option>
+                  <option value="orange">
                     <div class="col-2" style="background-color: orange; border-color: black">
                       <div class="col-8 ml-2">
                         Laranja
                       </div>
                     </div>
-                  </a>
-                  <a class="dropdown-item" href="#">
+                  </option>
+                  <option value="yellow">
                     <div class="col-2" style="background-color: Yellow; border-color: black">
                       <div class="col-8 ml-2">
                         Amarelo
                       </div>
                     </div>
-                  </a>
-                  <a class="dropdown-item" href="#">
+                  </option>
+                  <option value="green">
                     <div class="col-2" style="background-color: green; border-color: black">
                       <div class="col-8 ml-2">
                         Verde
                       </div>
                     </div>
-                  </a>
-                  <a class="dropdown-item" href="#">
+                  </option>
+                  <option value="blue">
                     <div class="col-2" style="background-color: blue; border-color: black">
                       <div class="col-8 ml-2">
                         Azul
                       </div>
                     </div>
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <div class="col-2" style="background-color: purple; border-color: black">
-                      <div class="col-8 ml-2">
-                        Roxo
-                      </div>
-                    </div>
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <div class="col-2" style="background-color: pink; border-color: black">
-                      <div class="col-8 ml-2">
-                        Rosa
-                      </div>
-                    </div>
-                  </a>
-                </div>
+                  </option>
+                </select>
               </div>
             </div>
             <div class="col-6 pl-0 p-0">
-              <label class="col-5 col-form-label justify-content-start">ALARME:</label>
+              <label class="col-5 col-form-label justify-content-start" for="sound">ALARME:</label>
               <div class="col-6 pl-0 pr-0 btn-group justify-content-start">
-                  <button type="button" class="col-12 pr-0 btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Som
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">
-                      Padrão
-                    </a>
-                    <a class="dropdown-item" href="#">
-                      Beep
-                    </a>
-                    <a class="dropdown-item" href="#">
-                      Sirene
-                    </a>
-                    <a class="dropdown-item" href="#">
-                      Música
-                    </a>
-                    <a class="dropdown-item" href="#">
-                      Gravação Customizada
-                    </a>
-                  </div>
-                </div>
+                <select class="custom-select form-control" ng-model="vm.eventToBeAdded.alarm" ng-init="vm.eventToBeAdded.alarm='standard'">
+                    <option value="standard" selected>
+                        Padrão
+                      </option>
+                      <option value="beep">
+                        Beep
+                      </option>
+                      <option value="siren">
+                        Sirene
+                      </option>
+                      <option value="music">
+                        Música
+                      </option>
+                      <option value="customRecording">
+                        Gravação Customizada
+                      </option>
+                  </select>
+              </div>
             </div>
           </div>
           <div class="row justify-content-start mt-4 ml-1">
@@ -125,8 +107,9 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-grey-rounded" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-grey-rounded" data-dismiss="modal" ng-click="vm.eventToBeAdded = null;">Close</button>
         <button type="button" class="btn-blue-rounded" ng-click="vm.saveAddition()" data-dismiss="modal">Save</button>
       </div>
     </div>
   </div>
+</div>

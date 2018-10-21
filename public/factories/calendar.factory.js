@@ -15,6 +15,7 @@
         var service = {
             addEvent: addEvent,
             getAll: getAll,
+            getAllSorted, getAllSorted,
             getById: getById,
             edit: edit,
             remove: remove
@@ -34,6 +35,12 @@
         
         function getAll() {
           return calendarList;
+        }
+
+        function getAllSorted(){
+          var sortedCalendarListRef = calendarRootRef.orderByChild('date');
+          var sortedCalendarList = $firebaseArray(sortedCalendarListRef);               
+          return sortedCalendarList;
         }
 
         function getById(id){
